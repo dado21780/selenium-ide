@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import React from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import Modal from '../../Modal'
 import FlatButton from '../../FlatButton'
@@ -31,12 +31,14 @@ export default class AlertDialog extends React.Component {
       isOpen: false,
       options: {},
     }
+    this.textAreaRef = useRef(null)
     this.show = this.show.bind(this)
     this.props.show(this.show)
   }
   static propTypes = {
     show: PropTypes.func.isRequired,
   }
+
   show(options) {
     if (this.state.isOpen) {
       this.state.rej(
@@ -92,14 +94,17 @@ export default class AlertDialog extends React.Component {
             </Markdown>
           ) : this.state.options.type === 'copy' ? (
             <div>
-              <input
-                type="button"
-                value="Copy"
-                onClick="var el = document.getElementById('astTestXML'); el.focus(); el.select(); alert('copying'); document.execCommand('copy'); "
+              {/* Logical shortcut for only displaying the
+                       button if the copy command exists */
+              document.queryCommandSupported('copy') && (
+                <div>
+                  <button onClick={copyToClipboard}>Copy</button>
+                </div>
+              )}
+              <textarea
+                ref={this.textAreaRef}
+                value={this.state.options.description}
               />
-              <textarea id="astTestXML">
-                {this.state.options.description}
-              </textarea>
             </div>
           ) : (
             <div>{this.state.options.description}</div>
@@ -107,5 +112,12 @@ export default class AlertDialog extends React.Component {
         </DialogContainer>
       </Modal>
     )
+  }
+  copyToClipboard(e) {
+    this.textAreaRef.current.select()
+    document.execCommand('copy')
+    // This is just personal preference.
+    // I prefer to not show the the whole text area selected.
+    e.target.focus()
   }
 }
