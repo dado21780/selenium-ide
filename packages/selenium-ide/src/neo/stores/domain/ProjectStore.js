@@ -158,8 +158,15 @@ export default class ProjectStore {
         const test2 = test.export()
         delete test2.id
         test2.commands.forEach(cmd => {
-            alert(cmd.command);
+            delete cmd.id;
+            throw new Error(
+                `that's my ${
+                    cmd.command
+                    }`
+            )
         })
+        const toBeAdded = TestCase.fromJS(test2)
+        this.addTestCase(toBeAdded)
     }
 
   @action.bound
