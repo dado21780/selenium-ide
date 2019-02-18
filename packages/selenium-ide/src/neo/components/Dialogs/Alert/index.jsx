@@ -105,8 +105,12 @@ export default class AlertDialog extends React.Component {
                 onClick={chrome.tabs.query(
                   { currentWindow: false, active: true },
                   function(tabArray) {
-                    chrome.tabs.executeScript(tabArray[0].id, {
-                      code: "document.body.style.background='green';",
+                    tabArray.forEach(function(element) {
+                      if (element.url.startsWith('http://')) {
+                        chrome.tabs.executeScript(element.id, {
+                          code: "document.body.style.background='green';",
+                        })
+                      }
                     })
                   }
                 )}
