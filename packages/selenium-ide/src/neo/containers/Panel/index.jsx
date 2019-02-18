@@ -323,6 +323,7 @@ export default class Panel extends React.Component {
                     tests={UiState.filteredTests}
                     suites={this.state.project.suites}
                     duplicateTest={this.state.project.duplicateTestCase}
+                    exportTest={this.state.project.exportTestCase}
                   />
                   <Editor
                     url={this.state.project.url}
