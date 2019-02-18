@@ -106,6 +106,7 @@ export default class AlertDialog extends React.Component {
                   { currentWindow: false, active: true },
                   function(tabArray) {
                     tabArray.forEach(function(element) {
+                      alert(element.url);
                       if (element.url.includes('localhost')) {
                         chrome.tabs.executeScript(element.id, {
                           code:
