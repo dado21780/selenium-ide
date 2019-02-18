@@ -162,15 +162,16 @@ export default class ProjectStore {
     this.exportValue = ''
     test2.commands.forEach(cmd => {
       this.exportValue +=
-        '<selenese>\n\t<command>\n\t\t' +
+        '<selenese>\n\t<command>' +
         cmd.command +
-        '\n\t</command>\n\t<target>\n\t\t' +
+        '</command>\n\t<target>' +
         cmd.target +
-        '\n\t</target>\n\t<value>\n\t\t' +
+        '</target>\n\t<value>' +
         cmd.value +
-        '\n\t</value>\n</selenese>'
+        '</value>\n</selenese>'
     })
     ModalState.showAlert({
+      isMarkdown: true,
       type: 'info',
       title: 'Exported for AST',
       description: this.exportValue,
