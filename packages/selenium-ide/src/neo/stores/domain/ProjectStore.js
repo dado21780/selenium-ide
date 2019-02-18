@@ -170,13 +170,13 @@ export default class ProjectStore {
         cmd.value +
         '</value>\n</selenese>'
     })
+    document.execCommand('copy')
     ModalState.showAlert({
       isMarkdown: true,
       type: 'info',
-      title: 'Exported for AST',
+      title: 'Copied to clipboard!',
       description: this.exportValue,
     })
-    alert()
   }
 
   @action.bound
