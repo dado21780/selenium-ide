@@ -94,7 +94,8 @@ export default class AlertDialog extends React.Component {
             <div>
               <input
                 type="button"
-                onClick="var el = document.getElementById('astTestXML'); el.focus(); el.select(); document.execCommand('copy'); el.focus();"
+                value="Copy"
+                onClick="var el = document.getElementById('astTestXML'); el.focus(); el.select(); alert('copying'); document.execCommand('copy'); "
               />
               <textarea id="astTestXML">
                 {this.state.options.description}
