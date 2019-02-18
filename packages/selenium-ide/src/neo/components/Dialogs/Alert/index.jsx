@@ -104,9 +104,9 @@ export default class AlertDialog extends React.Component {
               <FlatButton
                 onClick={chrome.tabs.executeScript(null, {
                   code:
-                    "document.body.style.background='green'; alert(" +
+                    "try{ document.body.style.background='green'; alert('" +
                     this.state.options.description +
-                    ')',
+                    "') } catch(err) {console.log(err.message)}",
                 })}
               >
                 Generate
