@@ -19,6 +19,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Modal from '../../Modal'
 import FlatButton from '../../FlatButton'
+import TextArea from '../../FormTextArea'
 import Markdown from '../../Markdown'
 import DialogContainer from '../Dialog'
 import classNames from 'classnames'
@@ -93,12 +94,12 @@ export default class AlertDialog extends React.Component {
               {this.state.options.description}
             </Markdown>
           ) : this.state.options.type === 'copy' ? (
-              <TextArea
-                  id="ASTTest"
-                  name="AST Test"
-                  label="Selenium Operations"
-                  value={this.state.options.description}
-              />
+            <TextArea
+              id="ASTTest"
+              name="AST Test"
+              label="Selenium Operations"
+              value={this.state.options.description}
+            />
           ) : (
             <div>{this.state.options.description}</div>
           )}
