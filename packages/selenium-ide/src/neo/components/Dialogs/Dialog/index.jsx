@@ -30,7 +30,7 @@ export default class DialogContainer extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     title: PropTypes.string,
-    type: PropTypes.oneOf(['info', 'warn']).isRequired,
+    type: PropTypes.oneOf(['info', 'warn', 'copy']).isRequired,
     children: PropTypes.node,
     renderTitle: PropTypes.func,
     renderImage: PropTypes.func,
