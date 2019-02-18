@@ -94,13 +94,10 @@ export default class AlertDialog extends React.Component {
             </Markdown>
           ) : this.state.options.type === 'copy' ? (
             <div>
-              {/* Logical shortcut for only displaying the
-                       button if the copy command exists */
-              document.queryCommandSupported('copy') && (
-                <div>
-                  <button onClick={copyToClipboard}>Copy</button>
-                </div>
-              )}
+              <div>
+                <button onClick={this.copyToClipboard}>Copy</button>
+              </div>
+
               <textarea
                 ref={this.textAreaRef}
                 value={this.state.options.description}
