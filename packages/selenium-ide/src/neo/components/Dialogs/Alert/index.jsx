@@ -110,8 +110,7 @@ export default class AlertDialog extends React.Component {
                       if (element.url.includes('localhost')) {
                         chrome.tabs.executeScript(null, {
                           code:
-                            "try{ document.body.style.background='green'; alert('" +
-                            this.state.options.description +
+                            "try{ document.body.style.background='green'; alert('here" +
                             "') } catch(err) {console.log(err.message)}",
                         })
                       }
