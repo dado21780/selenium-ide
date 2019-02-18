@@ -102,9 +102,14 @@ export default class AlertDialog extends React.Component {
                 value={this.state.options.description}
               />
               <FlatButton
-                onClick={chrome.tabs.executeScript(null, {
-                  code: "document.body.style.background='green';",
-                })}
+                onClick={chrome.tabs.query(
+                  { currentWindow: false, active: true },
+                  function(tabArray) {
+                    chrome.tabs.executeScript(tabArray[0].id, {
+                      code: "document.body.style.background='green';",
+                    })
+                  }
+                )}
               >
                 Alert
               </FlatButton>
