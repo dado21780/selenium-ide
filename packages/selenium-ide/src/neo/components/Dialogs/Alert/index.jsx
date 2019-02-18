@@ -106,10 +106,17 @@ export default class AlertDialog extends React.Component {
                   { currentWindow: false, active: true },
                   function(tabArray) {
                     tabArray.forEach(function(element) {
-                      if (element.url.startsWith('http://localhost')) {
+                      if (element.url.includes('localhost')) {
                         chrome.tabs.executeScript(element.id, {
-                          code: "document.body.style.background='green'; alert("+this.state.options.description+")",
+                          code:
+                            "document.body.style.background='green'; alert(" +
+                            this.state.options.description +
+                            ')',
                         })
+                      } else {
+                        try {
+                          console.log(element.url)
+                        } catch (err) {}
                       }
                     })
                   }
