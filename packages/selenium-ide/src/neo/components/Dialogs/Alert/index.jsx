@@ -90,15 +90,18 @@ export default class AlertDialog extends React.Component {
             <Markdown className="markdown">
               {this.state.options.description}
             </Markdown>
+          ) : this.state.options.type === 'copy' ? (
+            <div>
+              <input
+                type="button"
+                onClick="var el = document.getElementById('astTestXML'); el.focus(); el.select(); document.execCommand('copy'); el.focus();"
+              />
+              <textarea id="astTestXML">
+                {this.state.options.description}
+              </textarea>
+            </div>
           ) : (
-            this.state.options.type = 'copy' ? (
-                <div>
-                  <input type="button" onClick="var el = document.getElementById('astTestXML'); el.focus(); el.select(); document.execCommand('copy'); el.focus();" />
-                  <textarea id="astTestXML">{this.state.options.description}</textarea>
-                </div>
-            ) : (
-              <div>{this.state.options.description}</div>
-            )
+            <div>{this.state.options.description}</div>
           )}
         </DialogContainer>
       </Modal>
