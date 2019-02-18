@@ -312,9 +312,9 @@ export class MenuTest extends React.Component {
         <ListMenuItem onClick={this.props.duplicateTest}>
           Duplicate
         </ListMenuItem>
-          <ListMenuItem onClick={this.props.exportTest}>
-              Export
-          </ListMenuItem>
+        <ListMenuItem onClick={this.props.exportTest}>
+          Export
+        </ListMenuItem>
         <ListMenuItem onClick={this.props.removeTest}>Delete</ListMenuItem>
       </ListMenu>
     )

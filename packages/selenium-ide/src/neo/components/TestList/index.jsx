@@ -153,7 +153,7 @@ export default class TestList extends Component {
                   this.props.duplicateTest(test)
                 }}
                 exportTest={() => {
-                    this.props.exportTest(test)
+                  this.props.exportTest(test)
                 }}
                 removeTest={
                   this.props.removeTest

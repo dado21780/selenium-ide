@@ -42,6 +42,7 @@ export default class Navigation extends React.Component {
     suites: MobxPropTypes.arrayOrObservableArray.isRequired,
     tests: MobxPropTypes.arrayOrObservableArray.isRequired,
     duplicateTest: PropTypes.func,
+    exportTest: PropTypes.func,
   }
   async handleChangedTab(tab) {
     if (PlaybackState.isPlaying && !PlaybackState.paused) {
@@ -107,6 +108,7 @@ export default class Navigation extends React.Component {
                 <TestList
                   tests={this.props.tests}
                   duplicateTest={this.props.duplicateTest}
+                  exportTest={this.props.exportTest}
                   removeTest={ModalState.deleteTest}
                 />
               </React.Fragment>
