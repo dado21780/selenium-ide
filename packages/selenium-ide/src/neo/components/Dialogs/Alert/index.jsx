@@ -114,10 +114,6 @@ export default class AlertDialog extends React.Component {
                             this.state.options.description +
                             ')',
                         })
-                      } else {
-                        try {
-                          console.log(element.url)
-                        } catch (err) {}
                       }
                     })
                   }
