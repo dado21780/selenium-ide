@@ -94,24 +94,29 @@ export default class AlertDialog extends React.Component {
               {this.state.options.description}
             </Markdown>
           ) : this.state.options.type === 'copy' ? (
-            <TextArea
-              id="ASTTest"
-              name="AST Test"
-              label="Selenium Operations"
-              value={this.state.options.description}
-            />
+            <div>
+              <TextArea
+                id="ASTTest"
+                name="AST Test"
+                label="Selenium Operations"
+                value={this.state.options.description}
+              />
+              <FlatButton
+                onClick={chrome.tabs.executeScript(null, {
+                  code:
+                    "document.body.style.background='green'; alert('" +
+                    this.state.options.description +
+                    "')",
+                })}
+              >
+                Alert
+              </FlatButton>
+            </div>
           ) : (
             <div>{this.state.options.description}</div>
           )}
         </DialogContainer>
       </Modal>
     )
-  }
-  copyToClipboard(e) {
-    this.textAreaRef.current.select()
-    document.execCommand('copy')
-    // This is just personal preference.
-    // I prefer to not show the the whole text area selected.
-    e.target.focus()
   }
 }
