@@ -22,6 +22,7 @@ import TestCase from '../../models/TestCase'
 import Suite from '../../models/Suite'
 import modify from '../../side-effects/modify'
 import { VERSIONS } from '../../IO/migrate'
+import ModalState from "../view/ModalState";
 
 export default class ProjectStore {
   @observable
@@ -158,23 +159,23 @@ export default class ProjectStore {
   @action.bound
   exportTestCase(test) {
     const test2 = test.export()
-    delete test2.id
     this.exportValue = ''
     test2.commands.forEach(cmd => {
-      delete cmd.id
       this.exportValue +=
-        '<selenese><command>' +
+        '<selenese>\n\t<command>\n\t\t' +
         cmd.command +
-        '</command><target>' +
+        '\n\t</command>\n\t<target>\n\t\t' +
         cmd.target +
-        '</target><value>' +
+        '\n\t</target>\n\t<value>\n\t\t' +
         cmd.value +
-        '</value>'
+        '\n\t</value>\n</selenese>'
     })
-    alert(this.exportValue)
-    const toBeAdded = TestCase.fromJS(test2)
-    toBeAdded.setName(this.exportValue)
-    this.addTestCase(toBeAdded)
+    ModalState.showAlert({
+      type: 'info',
+      title: 'Exported for AST',
+      description: this.exportValue,
+    })
+    alert()
   }
 
   @action.bound
