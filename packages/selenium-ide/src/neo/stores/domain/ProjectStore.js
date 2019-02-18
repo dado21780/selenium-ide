@@ -31,6 +31,8 @@ export default class ProjectStore {
   @observable
   name = ''
   @observable
+  exportValue = ''
+  @observable
   url = ''
   @observable
   plugins = []
@@ -157,10 +159,21 @@ export default class ProjectStore {
   exportTestCase(test) {
     const test2 = test.export()
     delete test2.id
+    this.exportValue = ''
     test2.commands.forEach(cmd => {
       delete cmd.id
+      this.exportValue +=
+        '<selenese><command>' +
+        cmd.command +
+        '</command><target>' +
+        cmd.target +
+        '</target><value>' +
+        cmd.value +
+        '</value>'
     })
+    alert(this.exportValue)
     const toBeAdded = TestCase.fromJS(test2)
+    toBeAdded.setName(this.exportValue)
     this.addTestCase(toBeAdded)
   }
 

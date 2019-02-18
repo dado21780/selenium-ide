@@ -135,6 +135,7 @@ export default class Test extends React.Component {
     selectTest: PropTypes.func.isRequired,
     renameTest: PropTypes.func,
     duplicateTest: PropTypes.func,
+    exportTest: PropTypes.func,
     removeTest: PropTypes.func,
     connectDropTarget: PropTypes.func,
     connectDragSource: PropTypes.func,
