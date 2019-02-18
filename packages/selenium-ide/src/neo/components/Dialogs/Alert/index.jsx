@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import React, { useRef } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Modal from '../../Modal'
 import FlatButton from '../../FlatButton'
@@ -31,7 +31,7 @@ export default class AlertDialog extends React.Component {
       isOpen: false,
       options: {},
     }
-    this.textAreaRef = useRef(null)
+    this.textAreaRef = null
     this.show = this.show.bind(this)
     this.props.show(this.show)
   }
@@ -93,16 +93,12 @@ export default class AlertDialog extends React.Component {
               {this.state.options.description}
             </Markdown>
           ) : this.state.options.type === 'copy' ? (
-            <div>
-              <div>
-                <button onClick={this.copyToClipboard}>Copy</button>
-              </div>
-
-              <textarea
-                ref={this.textAreaRef}
-                value={this.state.options.description}
+              <TextArea
+                  id="ASTTest"
+                  name="AST Test"
+                  label="Selenium Operations"
+                  value={this.state.options.description}
               />
-            </div>
           ) : (
             <div>{this.state.options.description}</div>
           )}
