@@ -34,6 +34,7 @@ export default class TestList extends Component {
     suite: PropTypes.object,
     renameTest: PropTypes.func,
     duplicateTest: PropTypes.func,
+    exportTest: PropTypes.func,
     removeTest: PropTypes.func,
     noMenu: PropTypes.bool,
   }
@@ -150,6 +151,9 @@ export default class TestList extends Component {
                 renameTest={this.props.renameTest}
                 duplicateTest={() => {
                   this.props.duplicateTest(test)
+                }}
+                exportTest={() => {
+                    this.props.exportTest(test)
                 }}
                 removeTest={
                   this.props.removeTest

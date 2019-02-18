@@ -153,6 +153,15 @@ export default class ProjectStore {
     this.addTestCase(toBeAdded)
   }
 
+    @action.bound
+    exportTestCase(test) {
+        const test2 = test.export()
+        delete test2.id
+        test2.commands.forEach(cmd => {
+            alert(cmd.command);
+        })
+    }
+
   @action.bound
   deleteTestCase(test) {
     if (!test || !(test instanceof TestCase)) {
