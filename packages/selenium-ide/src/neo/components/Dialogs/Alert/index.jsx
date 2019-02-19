@@ -95,31 +95,13 @@ export default class AlertDialog extends React.Component {
             </Markdown>
           ) : this.state.options.type === 'copy' ? (
             <div>
+              <div>AST XML</div>
               <TextArea
                 id="ASTTest"
                 name="AST Test"
-                label="Selenium Operations"
+                rows="10"
                 value={this.state.options.description}
               />
-              <FlatButton
-                onClick={chrome.tabs.query(
-                  { currentWindow: false, active: true },
-                  function(tabArray) {
-                    tabArray.forEach(function(element) {
-                      //alert(element.url)
-                      if (element.url.includes('localhost')) {
-                        chrome.tabs.executeScript(null, {
-                          code:
-                            "try{ document.body.style.background='green'; alert('here" +
-                            "') } catch(err) {console.log(err.message)}",
-                        })
-                      }
-                    })
-                  }
-                )}
-              >
-                Generate
-              </FlatButton>
             </div>
           ) : (
             <div>{this.state.options.description}</div>
